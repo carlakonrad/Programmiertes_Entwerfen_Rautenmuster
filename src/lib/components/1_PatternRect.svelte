@@ -1,0 +1,27 @@
+<script>
+	const squareCount = 20;
+	const squareSize = 1000 / squareCount;
+	console.log(squareSize);
+
+	function calculatePosition(xi, yi) {
+		const x = xi * squareSize;
+		const y = yi * squareSize;
+
+		return { x: x, y: y };
+	}
+</script>
+
+<div class="svg-container">
+	<svg viewBox="0 0 1000 1000" class="svg-canvas">
+		{#each Array(squareCount) as _, yi}
+			{#each Array(squareCount) as _, xi}
+				<rect
+					transform="translate({calculatePosition(xi, yi).x}, {calculatePosition(xi, yi).y})"
+					width={squareSize}
+					height={squareSize}
+					fill={(xi +yi) % 2 ? 'tomato' : 'violet'} 
+				/>
+			{/each}
+		{/each}
+	</svg>
+</div>

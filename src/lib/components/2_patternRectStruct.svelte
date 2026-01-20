@@ -6,19 +6,15 @@ const squareSize = 1000 / squareCount;
 
 let offset = $state(0);
 let hue = $state(120);
-let color1 = $derived(chroma.oklch(0, 0.2, hue));
-let color2 = $derived(chroma.oklch(1, 0.2, hue + 100));
-let color3 = $derived(chroma.oklch(1, 0.2, hue + 200));
-let color4 = $derived(chroma.oklch(0, 0.2, hue));
+// let color1 = $derived(chroma.oklch(0, 0.2, hue));
+// let color2 = $derived(chroma.oklch(1, 0.2, hue + 100));
+// let color3 = $derived(chroma.oklch(1, 0.2, hue + 200));
+// let color4 = $derived(chroma.oklch(0, 0.2, hue));
 
-
-// function getColor(xi, yi) {
-//     if (xi % 2 === 0 && yi % 2 === 0) {
-//       return color1.hex();
-//     } else if (xi % 2 === 1 && yi % 2 === 0) {
-//       return color2.hex();
-// 	}
-// }
+let color1 = $derived(chroma.oklch(hue, 0, 0));
+let color2 = $derived(chroma.oklch(1, 0, 0));
+let color3 = $derived(chroma.oklch(1, 0, 0));
+let color4 = $derived(chroma.oklch(0, 0, 0));
 	
 function getRectColor(i, j) {
 	if ((i + j) % 2 === 0) {

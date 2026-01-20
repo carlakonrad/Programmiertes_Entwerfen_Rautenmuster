@@ -31,10 +31,7 @@
     
 </script>
 
-<div class="sidebar-right">
-    <Slider bind:value={offset} min={1} max={30} step={1} label="Offset" />
-    <!-- <Slider bind:value={hue} min={0} max={360} step={1} label="Farbton" /> -->
-</div>
+
 
 <div class="svg-container">
     <svg viewBox="-500 -500 1000 1000" class="svg-canvas">
@@ -60,6 +57,11 @@
         // <!-- <polygon transform="translate(530 470) rotate(90)" points="0,-30 20,0 0,30 -20,0" fill="white" stroke="none"/> -->
 
     </svg>
+
+    <div class="sidebar-right">
+    <Slider bind:value={offset} min={1} max={30} step={1} label="Offset" />
+    <!-- <Slider bind:value={hue} min={0} max={360} step={1} label="Farbton" /> -->
+    </div>
 </div>
 
 <style>

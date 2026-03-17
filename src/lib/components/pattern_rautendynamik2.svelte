@@ -1,5 +1,9 @@
 <script>
 import chroma from 'chroma-js';
+import Slider from '$lib/ui/Slider.svelte';
+import { appState } from '$lib/appState.svelte.js';
+
+
 
 const squareCount = 20;
 const squareSize = 1000 / squareCount;
@@ -26,13 +30,6 @@ function getRectColor(i, j) {
 
 </script>
 
-<div id="control">
-	<input id="offset" type="range" min="1" max="30" bind:value={offset} />
-    <label for="offset">{offset}</label>   
-	<input id="hue" type="range" min="1" max="360" bind:value={hue} />
-    <label for="hue">{hue}</label>  
-	
-</div>
 
 <div class="svg-container">
 	<svg viewBox="-500 -500 1000 1000" class="svg-canvas">
@@ -45,8 +42,8 @@ function getRectColor(i, j) {
 		{#each Array(19) as _, i}
 			{#each Array(19) as _, j}
 				<rect transform="translate({20 + (i-9) * 60} {20 + (j-9) * 60})" width="60" height="60" fill={getRectColor(i, j)}/>
-				<polygon transform="translate({20 + (i-9) * 60} {50 + (j-9) * 60})" points="0,-30 {offset},0 0,30 {-offset},0" fill={color1} stroke="none"/>
-				<polygon transform="translate({50 + (i-9) * 60} {20 + (j-9) * 60}) rotate(90)" points="0,-30 {offset},0 0,30 {-offset},0" fill={color2} stroke="none"/>
+				<polygon transform="translate({20 + (i-9) * 60} {50 + (j-9) * 60})" points="0,-30 {appState.offset},0 0,30 {-appState.offset},0" fill={color1} stroke="none"/>
+				<polygon transform="translate({50 + (i-9) * 60} {20 + (j-9) * 60}) rotate(90)" points="0,-30 {appState.offset},0 0,30 {-appState.offset},0" fill={color2} stroke="none"/>
 				
 			{/each}
 		{/each}
@@ -60,14 +57,18 @@ function getRectColor(i, j) {
 	</svg>
 </div>
 
+<div class="sidebar-right">
+	<Slider bind:value={appState.offset} min={0} max={30} step={1} label="Rautenbreite" />
+	<!-- <Slider bind:value={hue} min={1} max={360} step={1} label="Hue" /> -->
+</div>
+
 <style>
     #control {
       display: flex;
-      width: 150px;
+      flex-direction: column;
+      width: 300px;
+      gap: 10px;
       justify-content: left;
-      align-items: center;
-    }
-    input {
-      width: 50%;
+      align-items: flex-start;
     }
 </style>
